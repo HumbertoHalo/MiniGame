@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Belize Map Districts</title>
+<style>
+  body {
+    font-family: "Poppins", sans-serif;
+    background: #e6f2ff;
+    margin: 0;
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+    color: #004aad;
+  }
+  .container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  .map-container {
+    flex: 1 1 300px;
+    text-align: center;
+  }
+  .map-container img {
+    width: 300px;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+  .district-list {
+    flex: 1 1 200px;
+  }
+  .district-list button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid #004aad;
+    background-color: #a9d6e5;
+    color: #023047;
+    transition: background 0.3s, color 0.3s;
+  }
+  .district-list button:hover {
+    background-color: #004aad;
+    color: #fff;
+  }
+  /* Style for the Back button */
+  .district-list button.back-btn {
+    background-color: #ffb703;
+    color: #fff;
+    margin-top: 10px;
+  }
+  #infoBox {
+    margin-top: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+  #infoBox h2 {
+    color: #0077b6;
+  }
+</style>
+</head>
+<body>
+
+<h1>🇧🇿 Explore Belize Districts</h1>
+
+<div class="container">
+  <div class="map-container">
+    <img id="mapImage" src="Blank_map_of_Belize.png" alt="Belize Map">
+  </div>
+
+  <div class="district-list">
+    <button onclick="showDistrict('corozal')">Corozal</button>
+    <button onclick="showDistrict('orangeWalk')">Orange Walk</button>
+    <button onclick="showDistrict('belize')">Belize</button>
+    <button onclick="showDistrict('cayo')">Cayo</button>
+    <button onclick="showDistrict('stannCreek')">Stann Creek</button>
+    <button onclick="showDistrict('toledo')">Toledo</button>
+    <button class="back-btn" onclick="resetMap()">Back to Default</button>
+  </div>
+</div>
+
+<div id="infoBox">
+  <h2>Click a district to see facts!</h2>
+</div>
+
+<script>
+const districtData = {
+  corozal: {
+    image: "Corozal.png",
+    facts: [
+      "Corozal is the northernmost district, bordering Mexico.",
+      "Main town: Corozal Town.",
+      "Cerros Maya ruins overlook Corozal Bay.",
+      "Sugarcane is the main crop.",
+      "Popular for local seafood and coastal culture."
+    ]
+  },
+  orangeWalk: {
+    image: "OrangeWalk.png",
+    facts: [
+      "Orange Walk is nicknamed 'Sugar City'.",
+      "Home to the ancient Maya city of Lamanai.",
+      "Orange Walk Town is famous for street tacos.",
+      "Citrus farming is widespread.",
+      "The New River Lagoon is a major attraction."
+    ]
+  },
+  belize: {
+    image: "Belize.png",
+    facts: [
+      "Belize District contains Belize City, the largest city.",
+      "Gateway to the Belize Barrier Reef and cayes.",
+      "Known for commercial and cultural activity.",
+      "Historic sites include colonial buildings in Belize City.",
+      "The district has a mix of urban and coastal attractions."
+    ]
+  },
+  cayo: {
+    image: "Cayo.png",
+    facts: [
+      "Cayo District is rich in jungles, rivers, and mountains.",
+      "Capital city: Belmopan.",
+      "Famous for Xunantunich ruins and ATM Cave.",
+      "Mountain Pine Ridge offers waterfalls and wildlife.",
+      "Adventure tourism is a major draw."
+    ]
+  },
+  stannCreek: {
+    image: "StannCreek.png",
+    facts: [
+      "Stann Creek is home to Dangriga, center of Garifuna culture.",
+      "Placencia Peninsula offers world-class beaches.",
+      "Citrus groves are widespread.",
+      "Known for vibrant drumming and festivals.",
+      "Local cuisine features seafood and traditional dishes."
+    ]
+  },
+  toledo: {
+    image: "Toledo.png",
+    facts: [
+      "Toledo is the southernmost district.",
+      "Punta Gorda is the main town.",
+      "Rich in Maya villages and culture.",
+      "Famous for chocolate production and eco-tourism.",
+      "Rainforests and coastal ecosystems attract nature lovers."
+    ]
+  }
+};
+
+function showDistrict(district) {
+  const data = districtData[district];
+  const img = document.getElementById("mapImage");
+  const infoBox = document.getElementById("infoBox");
+
+  if (data) {
+    img.src = data.image; // change map to highlight district
+    infoBox.innerHTML = `<h2>${district.charAt(0).toUpperCase() + district.slice(1)} District</h2><ul>${data.facts.map(f=>`<li>${f}</li>`).join('')}</ul>`;
+  }
+}
+
+function resetMap() {
+  const img = document.getElementById("mapImage");
+  const infoBox = document.getElementById("infoBox");
+  img.src = "Blank_map_of_Belize.png"; // default map
+  infoBox.innerHTML = `<h2>Click a district to see facts!</h2>`; // default text
+}
+</script>
+
+</body>
+</html>
